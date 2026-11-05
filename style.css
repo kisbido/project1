@@ -1,0 +1,294 @@
+body {
+    margin-left: 90px;
+    height: 100vh;
+    background-color: rgb(43, 107, 77); /* Teal Forest */
+    overflow: hidden; 
+    display: flex;
+    font-family: "DM Sans", sans-serif;
+    margin: 0 0 0 90px;
+}
+
+.links a {
+    margin-top: 100px !important;
+    padding: 5px;
+    text-decoration: none !important;
+    color: rgb(23, 78, 79) !important;
+    font-size: larger;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.layout {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+}
+
+/* OLDALSÁVOK */
+.navbar-side {
+    width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    flex-shrink: 0;
+    margin-top: 120px;
+    border-right: 2px solid black;
+}
+
+.navbar-side2 {
+    width: 300px;
+    display:none;
+    justify-content:end;
+    align-items: center;
+    flex-shrink: 0;
+    margin-top: 120px;
+    border-right: 2px solid black;
+}
+
+.right-end {
+    background-color: rgb(23, 78, 79); /* Teal Forest */
+    width: 80px;
+    flex-shrink: 0;
+    border-right: 2px solid black;
+}
+
+/* TARTALOM */
+.content {
+    flex: 1;
+    background: rgb(243, 229, 195); /* Vanilla Latte */
+    height: 100vh;
+    overflow-y: auto; 
+    scroll-snap-type: y mandatory; 
+    scroll-behavior: smooth;
+    display: block; 
+}
+
+.section {
+    border-top: 12px solid #231005;
+    min-height: 100vh; /* Javítva: engedi a tartalom növekedését */
+    width: 100%;
+    display: flex;
+    flex-direction: column; /* Javítva: a projektek egymás alá kerülnek */
+    align-items: center;
+    justify-content: center;
+    scroll-snap-align: start;
+    box-sizing: border-box;
+    border-bottom: 2px solid rgba(23, 78, 79, 0.05);
+    position: relative;
+    background-color: rgb(243, 229, 195);
+    overflow: hidden;
+    padding: 60px 0; /* Extra hely a belső elemeknek */
+}
+
+/* Függőleges csíkozott háttér Teal Forest színnel */
+.section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    
+    background-image: repeating-linear-gradient(
+        90deg,
+        rgba(23, 78, 79, 0.06), 
+        rgba(23, 78, 79, 0.06) 4px, 
+        transparent 4px,
+        transparent 40px 
+    );
+
+    -webkit-mask-image: radial-gradient(
+        circle, 
+        transparent 25%, 
+        black 90%
+    );
+    mask-image: radial-gradient(
+        circle, 
+        transparent 25%, 
+        black 90%
+    );
+    
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* NAVIGÁCIÓ */
+.nav {
+    display: flex;
+    align-items: center;
+    position: relative; 
+    background-color: #ffffff;
+    padding: 0 20px; 
+    border-radius: 40px 60px 40px 60px;
+    box-shadow: 10px 10px 40px rgba(23, 78, 79, 0.2);
+    z-index: 10;
+    min-width: 420px; 
+}
+
+.nav-item {
+    color: #231005;
+    padding: 20px 15px;
+    text-decoration: none;
+    transition: 0.3s;
+    z-index: 2;
+    font-weight: 500;
+    cursor: pointer;
+    white-space: nowrap; 
+}
+
+.nav-item.is-active { color: #231005; }
+
+.line, .nav-indicator {
+    background-color: #231005;
+    position: absolute;
+    bottom: 0;
+    height: 11px;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.line { z-index: 1; border-radius: 8px 100px 0 0; }
+.nav-indicator { z-index: 1; border-radius: 0px 40px 0px 10px; }
+
+/* HERO & PROJEKTEK */
+.hero-container {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    max-width: 1000px;
+    padding: 0 40px;
+    position: relative;
+    z-index: 1;
+}
+
+.project-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 60px;
+    padding: 40px;
+    max-width: 1100px;
+    margin: 20px auto; /* Javítva: jobb térköz a projektek között */
+    width: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+.project-info { flex: 1; }
+.project-title { font-size: 3rem; margin: 10px 0 20px; color: #231005; }
+.project-category { text-transform: uppercase; letter-spacing: 3px; font-size: 0.8rem; color: rgba(23, 78, 79, 0.7); font-weight: bold; }
+
+.tech-stack { list-style: none; display: flex; gap: 15px; padding: 0; margin: 25px 0; }
+.tech-stack li { font-size: 0.9rem; background: rgba(23, 78, 79, 0.08); padding: 5px 12px; border-radius: 20px; color: #231005; }
+
+/* VIZUÁLIS ELEMEK */
+.project-visual {
+    flex: 1;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.image-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 450px;
+}
+
+.image-inner {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    background: linear-gradient(135deg, rgb(23, 78, 79) 0%, rgb(40, 110, 111) 100%);
+    border-radius: 15px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.placeholder-text {
+    color: rgb(243, 229, 195);
+    font-weight: bold;
+    letter-spacing: 2px;
+    opacity: 0.5;
+}
+
+.deco-rect {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 100%;
+    height: 100%;
+    border: 2px solid rgb(23, 78, 79);
+    border-radius: 15px;
+    z-index: 1;
+    opacity: 0.15;
+}
+
+.project-btn {
+    display: inline-block;
+    padding: 12px 28px;
+    background: rgb(23, 78, 79);
+    color: rgb(243, 229, 195);
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.project-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(23, 78, 79, 0.2);
+}
+
+.text1{
+    margin-left: 50px;
+    margin-top: 25px;
+}
+
+.move{
+    margin-left: 60px;
+}
+
+/* HERO TEXT */
+.greeting { color: rgb(23, 78, 79); font-weight: 700; text-transform: uppercase; letter-spacing: 2px; font-size: 14px; display: block; margin-bottom: 10px; margin-left:90px;}
+.hero-text h1 { font-size: 3.5rem; color: rgb(23, 78, 79); line-height: 1.2; margin: 0; }
+.highlight { color: rgba(23, 78, 79, 0.8); }
+.description { font-size: 1.1rem; color: rgba(23, 78, 79, 0.9); margin: 20px 0 30px 0; }
+
+/* DEKORÁCIÓ */
+.blob {
+    width: 300px; height: 300px;
+    background: linear-gradient(45deg, rgb(23, 78, 79), rgb(40, 110, 111));
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    animation: morph 10s linear infinite alternate;
+    opacity: 0.2;
+}
+
+.blob2 {
+    width: 180px; height: 180px;
+    background: linear-gradient(45deg, rgb(23, 78, 79), rgb(40, 110, 111));
+    border-radius: 40% 60% 70% 20% / 30% 30% 70% 70%;
+    animation: morph 10s linear infinite alternate;
+    position: absolute;
+    opacity: 0.2;
+}
+
+@keyframes morph {
+    0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+    100% { border-radius: 50% 50% 20% 80% / 25% 80% 20% 75%; }
+}
+
+.project-reverse .project-container { flex-direction: row-reverse; }
+.deco-left { top: -20px; left: -20px; right: auto; }
+
+@media (max-width: 768px) {
+    .project-container {
+        flex-direction: column-reverse;
+        padding: 20px;
+        gap: 30px;
+    }
+    .project-title { font-size: 2rem; }
+}
